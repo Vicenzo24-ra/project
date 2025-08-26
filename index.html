@@ -1,0 +1,330 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <title>Inquérito: Uso excessivo de smartphone e relações humanas</title>
+  <meta name="description" content="Questionário sobre uso de smartphones e impacto nas relações humanas." />
+  <style>
+    :root{
+      --bg: #0b1020;
+      --card: #121a35;
+      --muted: #9fb3c8;
+      --text: #e6eef8;
+      --accent: #4bb6ff;
+      --accent-2: #81e6d9;
+      --danger: #ff6b6b;
+      --ok: #22c55e;
+      --ring: rgba(75,182,255,.35);
+    }
+    *{box-sizing:border-box}
+    html,body{height:100%}
+    body{
+      margin:0; font-family: Inter, system-ui, -apple-system, Segoe UI, Roboto, "Helvetica Neue", Arial, "Noto Sans", "Apple Color Emoji", "Segoe UI Emoji";
+      background: radial-gradient(1200px 600px at 10% -10%, #12204a 0%, transparent 60%),
+                  radial-gradient(1000px 800px at 90% 0%, #123a3a 0%, transparent 60%),
+                  var(--bg);
+      color: var(--text);
+      line-height:1.6; 
+    }
+    .container{ max-width: 980px; margin: 0 auto; padding: 24px; }
+    header{
+      display:flex; align-items:center; justify-content:space-between; gap:16px; margin-bottom: 20px;
+    }
+    .brand{ display:flex; align-items:center; gap:12px; }
+    .logo{
+      width:42px;height:42px;border-radius:12px;
+      background: linear-gradient(135deg, var(--accent), var(--accent-2));
+      box-shadow: 0 10px 30px rgba(75,182,255,.35), inset 0 0 0 2px rgba(255,255,255,.25);
+    }
+    h1{ font-size: clamp(1.4rem, 2.4vw + .6rem, 2rem); margin:0 }
+    p.lead{ color: var(--muted); margin: 6px 0 0 0; }
+
+    .card{
+      background: linear-gradient(180deg, rgba(255,255,255,.02), rgba(255,255,255,.01) 60%, transparent), var(--card);
+      border: 1px solid rgba(255,255,255,.06);
+      border-radius: 20px; padding: 20px; box-shadow: 0 8px 30px rgba(0,0,0,.35);
+      backdrop-filter: blur(6px);
+    }
+    .grid{ display:grid; gap:16px }
+    @media (min-width: 900px){ .grid-2{ grid-template-columns: 1fr 1fr } }
+
+    .section-title{ font-size: 1.05rem; font-weight:600; letter-spacing:.2px; margin:10px 0 6px }
+
+    label{ display:block; font-weight:600; margin: 10px 0 6px }
+    .help{ color: var(--muted); font-size:.92rem; margin-top: -4px; }
+
+    .field{ display:block; width:100%; padding:12px 14px; border-radius:12px; border:1px solid rgba(255,255,255,.12); background:#0f1730; color:var(--text); outline:none; }
+    .field:focus{ border-color: var(--accent); box-shadow: 0 0 0 4px var(--ring); }
+
+    .choices{ display:flex; flex-direction:column; gap:10px; }
+    .choice{
+      display:flex; align-items:flex-start; gap:10px; padding:12px; border-radius:12px; background:#0f1730; border:1px solid rgba(255,255,255,.08);
+    }
+    .choice input{ margin-top:3px }
+
+    .toolbar{ display:flex; gap:10px; flex-wrap:wrap; align-items:center }
+    button{
+      appearance:none; border:0; background:linear-gradient(135deg, var(--accent), #3aa6ef);
+      color:#00111f; font-weight:700; padding:12px 16px; border-radius:14px; cursor:pointer;
+      box-shadow: 0 10px 24px rgba(75,182,255,.35);
+    }
+    button.secondary{ background:#0f1730; color:var(--text); border:1px solid rgba(255,255,255,.12); box-shadow: none; }
+    button.danger{ background: linear-gradient(135deg, var(--danger), #ff8a8a); color: #2b0000 }
+
+    .badge{ display:inline-flex; align-items:center; gap:8px; padding: 8px 12px; border-radius: 999px; background:#0f1730; border:1px solid rgba(255,255,255,.08); color: var(--muted); font-size:.92rem }
+    .dot{ width:8px; height:8px; border-radius:50%; background: var(--ok); box-shadow: 0 0 0 4px rgba(34,197,94,.15) }
+
+    .divider{ height:1px; background: linear-gradient(90deg, transparent, rgba(255,255,255,.08), transparent); margin: 10px 0 6px }
+
+    .success{ background:#0f2a1d; border:1px solid rgba(34,197,94,.3); color:#b6f3c6; padding:12px 14px; border-radius:12px; display:none; }
+    .error{ background:#2a1010; border:1px solid rgba(255,107,107,.3); color:#ffd6d6; padding:12px 14px; border-radius:12px; display:none; }
+
+    footer{ color: var(--muted); font-size:.9rem; margin-top: 20px; text-align:center }
+    a{ color: var(--accent-2); text-decoration: none }
+    a:hover{ text-decoration: underline }
+  </style>
+</head>
+<body>
+  <div class="container">
+    <header>
+      <div class="brand">
+        <div class="logo" aria-hidden="true"></div>
+        <div>
+          <h1>Inquérito: Uso excessivo de smartphone e queda das relações humanas</h1>
+          <p class="lead">Ajude-nos a compreender como os telemóveis influenciam a convivência familiar, amizades e a comunidade.</p>
+        </div>
+      </div>
+      <span class="badge" title="Estado do formulário"><span class="dot" aria-hidden="true"></span> Pronto para responder</span>
+    </header>
+
+    <main class="grid" aria-live="polite">
+      <form id="survey" class="card" action="https://formspree.io/f/mnnbakqp" method="POST">
+        <input type="hidden" name="_replyto" value="rafaelefraimbentob@gmail.com">
+
+
+        <h2 class="section-title">Parte A – Dados gerais</h2>
+        <div class="grid grid-2">
+          <div>
+            <label for="idade">Idade</label>
+            <select class="field" id="idade" name="idade" required>
+              <option value="" disabled selected>Selecione…</option>
+              <option>Menos de 15 anos</option>
+              <option>15 – 20 anos</option>
+              <option>21 – 30 anos</option>
+              <option>31 – 40 anos</option>
+              <option>Acima de 40 anos</option>
+            </select>
+            <p class="help">Obrigatório</p>
+          </div>
+          <div>
+            <label for="sexo">Sexo</label>
+            <select class="field" id="sexo" name="sexo" required>
+              <option value="" disabled selected>Selecione…</option>
+              <option>Masculino</option>
+              <option>Feminino</option>
+              <option>Prefiro não responder</option>
+            </select>
+            <p class="help">Obrigatório</p>
+          </div>
+        </div>
+
+        <div class="divider"></div>
+        <h2 class="section-title">Parte B – Uso do smartphone</h2>
+
+        <label>Quantas horas por dia, em média, você utiliza o smartphone?</label>
+        <div class="choices">
+          <label class="choice"><input type="radio" name="horas" value="Menos de 2 horas" required> Menos de 2 horas</label>
+          <label class="choice"><input type="radio" name="horas" value="2 – 4 horas"> 2 – 4 horas</label>
+          <label class="choice"><input type="radio" name="horas" value="5 – 7 horas"> 5 – 7 horas</label>
+          <label class="choice"><input type="radio" name="horas" value="> 7 horas"> Mais de 7 horas</label>
+        </div>
+
+        <label style="margin-top:12px">Para que você mais utiliza o smartphone? <span class="help">(pode marcar mais de uma opção)</span></label>
+        <div class="choices">
+          <label class="choice"><input type="checkbox" name="uso" value="Redes sociais"> Redes sociais</label>
+          <label class="choice"><input type="checkbox" name="uso" value="Chamadas e mensagens"> Chamadas e mensagens</label>
+          <label class="choice"><input type="checkbox" name="uso" value="Estudos/Trabalho"> Estudos/Trabalho</label>
+          <label class="choice"><input type="checkbox" name="uso" value="Jogos/Entretenimento"> Jogos/Entretenimento</label>
+          <label class="choice"><input type="checkbox" name="uso" value="Outros"> Outros <input class="field" style="margin-left:8px;flex:1" type="text" id="uso_outros" placeholder="Especifique (opcional)"></label>
+        </div>
+
+        <label style="margin-top:12px">Você já sentiu dificuldade em ficar sem o smartphone por algumas horas?</label>
+        <div class="choices">
+          <label class="choice"><input type="radio" name="abstinencia" value="Sim" required> Sim</label>
+          <label class="choice"><input type="radio" name="abstinencia" value="Não"> Não</label>
+        </div>
+
+        <div class="divider"></div>
+        <h2 class="section-title">Parte C – Relações humanas</h2>
+
+        <label>Você sente que o uso excessivo do smartphone diminuiu o tempo de conversa presencial com familiares e amigos?</label>
+        <div class="choices">
+          <label class="choice"><input type="radio" name="presencial" value="Sim, muito" required> Sim, muito</label>
+          <label class="choice"><input type="radio" name="presencial" value="Sim, um pouco"> Sim, um pouco</label>
+          <label class="choice"><input type="radio" name="presencial" value="Não"> Não</label>
+        </div>
+
+        <label style="margin-top:12px">Já esteve em um encontro (família, amigos, igreja, escola) onde as pessoas estavam mais focadas no celular do que nas conversas?</label>
+        <div class="choices">
+          <label class="choice"><input type="radio" name="contexto" value="Frequentemente" required> Frequentemente</label>
+          <label class="choice"><input type="radio" name="contexto" value="Às vezes"> Às vezes</label>
+          <label class="choice"><input type="radio" name="contexto" value="Nunca"> Nunca</label>
+        </div>
+
+        <label style="margin-top:12px">O uso do smartphone afeta suas relações pessoais (amizades, namoro, família)?</label>
+        <div class="choices">
+          <label class="choice"><input type="radio" name="impacto" value="Sim, negativamente" required> Sim, negativamente</label>
+          <label class="choice"><input type="radio" name="impacto" value="Sim, positivamente"> Sim, positivamente</label>
+          <label class="choice"><input type="radio" name="impacto" value="Não afeta"> Não afeta</label>
+        </div>
+
+        <div class="divider"></div>
+        <h2 class="section-title">Parte D – Opinião pessoal</h2>
+
+        <label>Na sua opinião, o uso excessivo do smartphone é uma das causas da queda nas relações humanas?</label>
+        <div class="choices">
+          <label class="choice"><input type="radio" name="causa" value="Sim" required> Sim</label>
+          <label class="choice"><input type="radio" name="causa" value="Não"> Não</label>
+          <label class="choice"><input type="radio" name="causa" value="Em parte"> Em parte</label>
+        </div>
+
+        <label for="sugestoes" style="margin-top:12px">O que você sugere para equilibrar o uso do smartphone e fortalecer as relações humanas?</label>
+        <textarea class="field" id="sugestoes" name="sugestoes" rows="4" placeholder="Escreva aqui…" required></textarea>
+
+        <label class="choice" style="margin-top:12px">
+          <input type="checkbox" id="consent" required>
+          Declaro que li e concordo em participar deste inquérito de forma voluntária. (Obrigatório)
+        </label>
+
+        <div class="toolbar" style="margin-top:14px">
+          <button type="submit" aria-label="Enviar respostas">Enviar respostas</button>
+          <button type="button" id="clearLocal" class="danger" aria-label="Apagar respostas locais">Apagar respostas locais</button>
+        </div>
+
+        <p id="msgOk" class="success" role="status">✅ Obrigado! Sua resposta foi registrada localmente neste dispositivo. Você pode exportar as respostas em CSV.</p>
+        <p id="msgErr" class="error" role="alert">⚠️ Não foi possível registrar. Verifique os campos obrigatórios.</p>
+      </form>
+    </main>
+
+    <footer>
+      Obrigado por fazer parte deste inquerito
+    </footer>
+  </div>
+
+  <script>
+    const $ = (q) => document.querySelector(q);
+    const form = $("#survey");
+    const msgOk = $("#msgOk");
+    const msgErr = $("#msgErr");
+    const exportBtn = $("#exportCsv");
+    const clearBtn = $("#clearLocal");
+    const STORAGE_KEY = "inquerito_smartphone_respostas_v1";
+
+    document.getElementById('copyYear').textContent = `© ${new Date().getFullYear()}`;
+
+    function getFormData(){
+      const f = new FormData(form);
+      const usos = [];
+      form.querySelectorAll('input[name="uso"]:checked').forEach(i=>usos.push(i.value));
+      const outros = document.getElementById('uso_outros').value?.trim();
+      if(outros) usos.push(`Outros: ${outros}`);
+      const data = {
+        timestamp: new Date().toISOString(),
+        idade: f.get('idade') || '',
+        sexo: f.get('sexo') || '',
+        horas: f.get('horas') || '',
+        usos: usos.join('; '),
+        abstinencia: f.get('abstinencia') || '',
+        presencial: f.get('presencial') || '',
+        contexto: f.get('contexto') || '',
+        impacto: f.get('impacto') || '',
+        causa: f.get('causa') || '',
+        sugestoes: (f.get('sugestoes') || '').toString().replace(/\s+/g,' ').trim(),
+      };
+      return data;
+    }
+
+    function saveResponse(resp){
+      try{
+        const prev = JSON.parse(localStorage.getItem(STORAGE_KEY) || '[]');
+        prev.push(resp);
+        localStorage.setItem(STORAGE_KEY, JSON.stringify(prev));
+        return true;
+      }catch(e){
+        console.error(e);
+        return false;
+      }
+    }
+
+    function toCSV(rows){
+      const headers = Object.keys(rows[0]);
+      const escape = (v) => '"' + String(v).replaceAll('"','""') + '"';
+      const lines = [headers.join(',')];
+      for(const r of rows){ lines.push(headers.map(h=>escape(r[h] ?? '')).join(',')); }
+      return lines.join('\n');
+    }
+
+    function download(filename, text){
+      const blob = new Blob([text], {type: 'text/csv;charset=utf-8;'});
+      const url = URL.createObjectURL(blob);
+      const a = document.createElement('a');
+      a.href = url; a.download = filename; a.style.display='none';
+      document.body.appendChild(a); a.click();
+      URL.revokeObjectURL(url); a.remove();
+    }
+
+    form.addEventListener('submit', (e)=>{
+      e.preventDefault();
+      msgOk.style.display = 'none';
+      msgErr.style.display = 'none';
+
+      // Verifica consentimento
+      if(!document.getElementById('consent').checked){
+        msgErr.textContent = '⚠️ Marque o consentimento para continuar.';
+        msgErr.style.display = 'block';
+        return;
+      }
+
+      const data = getFormData();
+      // Campos essenciais
+      if(!data.idade || !data.sexo || !data.horas || !data.abstinencia || !data.presencial || !data.contexto || !data.impacto || !data.causa || !data.sugestoes){
+        msgErr.textContent = '⚠️ Preencha todos os campos obrigatórios.';
+        msgErr.style.display = 'block';
+        return;
+      }
+
+      const ok = saveResponse(data);
+      if(ok){
+        msgOk.style.display = 'block';
+        form.reset();
+        // Repor selects para placeholder
+        document.getElementById('idade').selectedIndex = 0;
+        document.getElementById('sexo').selectedIndex = 0;
+      }else{
+        msgErr.textContent = '⚠️ Houve um erro ao guardar localmente (talvez o armazenamento esteja cheio).';
+        msgErr.style.display = 'block';
+      }
+    });
+
+    exportBtn.addEventListener('click', ()=>{
+      const rows = JSON.parse(localStorage.getItem(STORAGE_KEY) || '[]');
+      if(!rows.length){
+        alert('Ainda não há respostas guardadas neste dispositivo.');
+        return;
+      }
+      const csv = toCSV(rows);
+      download(`inquerito-smartphone-${new Date().toISOString().slice(0,10)}.csv`, csv);
+    });
+
+    clearBtn.addEventListener('click', ()=>{
+      if(confirm('Tem a certeza que deseja apagar TODAS as respostas guardadas localmente? Esta ação não pode ser desfeita.')){
+        localStorage.removeItem(STORAGE_KEY);
+        alert('Respostas locais apagadas.');
+      }
+    });
+  </script>
+</body>
+</html>
+
+
